@@ -1,8 +1,8 @@
 all: diffs users
 
 diffs:
-	./diffs.py archive/tweets.csv > diffs.jsonl
+	./diffs.py archive/tweets.csv | gzip > diffs.jsonl.gz
 
 users:
-	./users.py diffs.jsonl > users.jsonl
+	./users.py diffs.jsonl | gzip > users.jsonl.gz
 

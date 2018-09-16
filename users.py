@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 
+import sys
 import json
 import requests
 
 def main():
-    users = get_users()
+    if len(sys.argv) != 2:
+        sys.exit('usage: users.py diffs.jsonl')
+    diffs_file = sys.argv[1]
+
+    users = get_users(diffs_file)
     start = 0
     for end in range(0, len(users), 50):
         print_users(users[start:end])
@@ -12,9 +17,9 @@ def main():
     if end < len(users):
         print_users(users[end:len(users)])
 
-def get_users():
+def get_users(diffs_file):
     users = set()
-    for line in open('diffs.json'):
+    for line in open(diffs_file):
         diff = json.loads(line)
         # revisions that have been deleted will not have fromuser and touser
         if 'fromuser' in diff:
