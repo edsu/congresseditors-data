@@ -15,7 +15,7 @@ be useful in cases where the revision has been deleted (rare, but it happens).
 The result is written as line oriented JSON.  Here is an example of what a
 revision looks like: 
 
-```
+```javascript
 {
   "fromid": 29699016,
   "fromrevid": 859421957,
@@ -57,7 +57,7 @@ The `users.jsonl` file contains information for the users referenced in the
 the data from Wikipedia's [users] API call. Here is an example of what
 information Wikipedia make available for a user:
 
-```
+```javascript
 {
   "editcount": 82479,
   "attachedlocal": {
