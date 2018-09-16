@@ -2,11 +2,12 @@
 
 # generate some overview stats from diffs.jsonl and users.jsonl
 
+import gzip
 import json
 
 bots = {}
 anon = {}
-for line in open('users.jsonl', 'r'):
+for line in gzip.open('users.jsonl.gz'):
     user = json.loads(line)
     if 'invalid' in user:
         anon[user['name']] = True
@@ -17,11 +18,10 @@ bot_count = 0
 anon_count = 0
 regular_count = 0
 delete_count = 0
-for line in open('diffs.jsonl', 'r'):
+for line in gzip.open('diffs.jsonl.gz'):
     diff = json.loads(line)
     if 'touser' not in diff:
         delete_count += 1 
-        print(diff)
     elif diff['touser'] in bots:
         bot_count += 1
     elif diff['touser'] in anon:
