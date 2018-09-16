@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 import sys
+import gzip
 import json
 import requests
 
 def main():
     if len(sys.argv) != 2:
-        sys.exit('usage: users.py diffs.jsonl')
+        sys.exit('usage: users.py diffs.jsonl.gz')
     diffs_file = sys.argv[1]
 
     users = get_users(diffs_file)
@@ -19,7 +20,11 @@ def main():
 
 def get_users(diffs_file):
     users = set()
-    for line in open(diffs_file):
+    if diffs_file.endswith('.gz'):
+        fh = gzip.open(diffs_file)
+    else:
+        fh = open(diffs_file)
+    for line in fh:
         diff = json.loads(line)
         # revisions that have been deleted will not have fromuser and touser
         if 'fromuser' in diff:
