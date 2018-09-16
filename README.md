@@ -8,12 +8,12 @@ to Wikipedia for edits is also [available].
 
 In addition to the archive this repository also includes `diffs.jsonl` which is
 a snapshot of the revision information from Wikipedia's API. The included
-`download.py` script will read the `tweets.csv` from the Twitter archive,
-extract the diff URL from the tweet, and fetch the detailed revision metadata
-using the [compare] API call. The tweet metadata is also added to the revision
-which can be useful in cases where the revision has been deleted (rare, but it
-happens). The result is written as line oriented JSON.  Here is an example of
-what a revision looks like: 
+`diffs.py` script will read the `tweets.csv` from the Twitter archive, extract
+the diff URL from the tweet, and fetch the detailed revision metadata using the
+[compare] API call. The tweet metadata is also added to the revision which can
+be useful in cases where the revision has been deleted (rare, but it happens).
+The result is written as line oriented JSON.  Here is an example of what a
+revision looks like: 
 
 ```
 {
