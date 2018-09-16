@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Use the Twitter archive's tweets.csv to download all the revision information
+# for edits that were announced.
+
 import csv
 import json
 import time
